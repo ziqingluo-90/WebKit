@@ -422,6 +422,11 @@ if (isWin() || isPlayStation() || (isJSCOnly() && isWindows())) {
         exit exitStatus($result);
     }
 
+    # Same switch Tools/Makefile honors for the non-workspace build.
+    if ($ENV{'DO_NOT_BUILD_IMAGE_DIFF'}) {
+        exit exitStatus($result);
+    }
+
     # Build ImageDiff for host
     my @command = File::Spec->catfile(getcwd(), "/Tools/Scripts/build-imagediff");
     chdirWebKit();
